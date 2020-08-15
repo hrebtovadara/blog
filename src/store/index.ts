@@ -44,7 +44,15 @@ export default new Vuex.Store({
         userName: "Леголас",
         userSurname: "Зеленолист",
       },
-    ]
+    ],
+    comments: [
+      {
+        id: 1,
+        userLogin: "Красотка",
+        thoughtId: 1,
+        text: '123123',
+      },
+    ],
   },
   mutations: {
     addNewBlogPost(state, payload):any {
@@ -53,6 +61,14 @@ export default new Vuex.Store({
           name: payload.name,
           text: payload.text,
       })
+    }
+  },
+  getters: {
+    getCurrentThought: state => (id:number) => {
+      return state.blogItemsList.find(el => el.id === id)
+    },
+    getComments: state => (id: number) => {
+      return state.comments.find(el => el.thoughtId === id)
     }
   },
   actions: {

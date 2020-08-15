@@ -25,7 +25,7 @@ export default {
             this.$store.dispatch('asyncChange', {
                 name:this.nameRecording, 
                 text:this.textRecording
-                })
+            })
         }
     }
 }

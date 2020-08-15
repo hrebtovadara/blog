@@ -1,6 +1,6 @@
 <template>
     <div class="blog-item">
-        <router-link class="blog-item__name" to="/about">{{name}}</router-link>
+        <router-link class="blog-item__name" :to= "path">{{name}}</router-link>
         <p class="blog-item__text">{{text}}</p>
     </div>
 </template>
@@ -12,9 +12,15 @@ export default {
         }
     },
     props: [
+        "id",
         "name",
         "text"
-    ]
+    ],
+     computed: {
+         path() {
+             return "/" + this.id;
+         }
+     }
 }
 </script>
 

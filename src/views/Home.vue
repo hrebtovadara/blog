@@ -7,18 +7,15 @@
     <div class="blog__container">
       <h2 class="blog__container-title">Your stupid thoughts</h2>
       <ul class="blog__list">
-        <li 
-          is="blogItem"
+        <blog-item
           v-for="blogItem in blogItemsList"
           v-bind:key="blogItem.id"
+          v-bind:id="blogItem.id"
           v-bind:name="blogItem.name"
           v-bind:text="blogItem.text"
-          v-on:click="indexBlogItem"
-
-        ></li>
+        />
       </ul>
     </div>
-    
   </div>
 </template>
 
@@ -37,16 +34,9 @@ export default {
     blogItemsList() {
       return this.$store.state.blogItemsList
     },
-   
-  },
-  methods: {
-     indexBlogItem() {
-        console.log(3) 
-    
-    }
+  
   }
 }
-
 </script>
 
 <style>
@@ -60,12 +50,9 @@ export default {
 
   .blog__banner-title {
     color: #ffffff;
-   
   }
 
   .blog__list {
     padding: 0;
   }
-
-
 </style>

@@ -3,7 +3,6 @@
     <h1>This is an about page</h1>
     <div 
      is="blogItem"
-          v-for="blogItem in indexBlogView"
           v-bind:key="blogItem.id"
           v-bind:name="blogItem.name"
           v-bind:text="blogItem.text"
@@ -17,18 +16,14 @@
        </div>
 
       <ul class="feedback-comments">
-        <li
-          is="feedBack"
+        <feed-back
           v-for="feedbackItem in feedbackList"
           v-bind:key="feedbackItem.id"
-          v-bind:feedbackText="feedbackItem.feedbackText"
-        ></li>
+          v-bind:feedbackText="feedbackItem.text"
+        />
       </ul>
-       
      </div>
   </div>
-
- 
 </template>
 
 <script>
@@ -38,12 +33,6 @@ import feedBack from "../components/Feedback.vue"
 export default {
   data: function () {
     return {
-      feedbackList: [
-        {
-          id: 1,
-          feedbackText: "Жизнь за Нерзула!11"
-        }
-      ],
       counterComment: 2,
       newCommentText: ''
     }
@@ -53,8 +42,14 @@ export default {
     feedBack
   },
   computed: {
-    indexBlogView() {
-      return this.$store.state.blogItemsList.slice(0,1)
+    blogItem() {
+      return this.$store.getters.getCurrentThought(this.selectedId)
+    },
+    feedbackList() {
+      return this.$store.getters.getComments(this.selectedId);
+    },
+    selectedId() {
+      return parseInt(this.$route.params.id)
     }
   },
   methods: {
