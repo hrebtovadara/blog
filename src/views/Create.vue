@@ -26,6 +26,8 @@ export default {
                 name:this.nameRecording, 
                 text:this.textRecording
             })
+
+            this.$router.push("/")
         }
     }
 }

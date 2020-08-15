@@ -11,17 +11,17 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
-    path: "/:id",
-    name: "Thought",
-    component: () =>
-      import( "../views/About.vue")
-  },
-  {
     path: "/create",
     name: "Create",
     component: () =>
       import("../views/Create.vue")
-  }
+  },
+  {
+    path: "/:id",
+    name: "Thought",
+    component: () =>
+      import( "../views/Thought.vue")
+  },
 ];
 
 const router = new VueRouter({
