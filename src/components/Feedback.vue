@@ -21,8 +21,6 @@ export default {
       border-radius: 10px;
       margin: 10px auto;
 
-
-
       display: flex;
       align-items: center;
       justify-content: space-between;
