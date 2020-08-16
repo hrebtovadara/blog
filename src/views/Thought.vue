@@ -1,22 +1,22 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <div 
-     is="blogItem"
-          v-bind:key="blogItem.id"
-          v-bind:name="blogItem.name"
-          v-bind:text="blogItem.text"
-          v-bind:id="blogItem.id"
-          v-bind:userId="blogItem.userId"
-          
+    <div
+      is="blogItem"
+      v-bind:key="blogItem.id"
+      v-bind:name="blogItem.name"
+      v-bind:text="blogItem.text"
+      v-bind:id="blogItem.id"
+      v-bind:userId="blogItem.userId"
+      v-bind:date="new Date()"
     ></div>
 
-     <div class="feedback-container">
-       <div class="feedback-container__new-comment">
-         <label for="newComment">оставьте ваш комментарий:</label>
-         <textarea class="feedback-container__text" id="newComment" v-model="newCommentText"></textarea>
-         <button @click="addNewComment">добавить никому не нужное мнение</button>
-       </div>
+    <div class="feedback-container">
+      <div class="feedback-container__new-comment">
+        <label for="newComment">оставьте ваш комментарий:</label>
+        <textarea class="feedback-container__text" id="newComment" v-model="newCommentText"></textarea>
+        <button @click="addNewComment">добавить никому не нужное мнение</button>
+      </div>
 
       <ul class="feedback-comments">
         <feed-back
@@ -25,22 +25,23 @@
           v-bind:id="feedbackItem.id"
           v-bind:userId="feedbackItem.userId"
           v-bind:feedbackText="feedbackItem.feedbackText"
+          v-bind:date="new Date()"
         />
       </ul>
-     </div>
+    </div>
   </div>
 </template>
 
 <script>
-import blogItem from "../components/BlogItem.vue"
-import feedBack from "../components/Feedback.vue"
+import blogItem from "../components/BlogItem.vue";
+import feedBack from "../components/Feedback.vue";
 
 export default {
-  data: function () {
+  data: function() {
     return {
       counterComment: 2,
-      newCommentText: ''
-    }
+      newCommentText: ""
+    };
   },
   components: {
     blogItem,
@@ -48,63 +49,62 @@ export default {
   },
   computed: {
     blogItem() {
-      return this.$store.getters.getCurrentThought(this.selectedId)
+      return this.$store.getters.getCurrentThought(this.selectedId);
     },
     feedbackList() {
       return this.$store.getters.getComments(this.selectedId);
     },
     selectedId() {
-      return parseInt(this.$route.params.id)
+      return parseInt(this.$route.params.id);
     }
   },
   methods: {
     addNewComment(newCommentText) {
-        const user = this.$store.getters.getRandomUser();
-        this.$store.dispatch('addNewComment', {
-          feedbackText:this.newCommentText,
-          thoughtId: this.selectedId,
-          userId: user.id
-        }
-      )
+      const user = this.$store.getters.getRandomUser();
+      this.$store.dispatch("addNewComment", {
+        feedbackText: this.newCommentText,
+        thoughtId: this.selectedId,
+        userId: user.id
+      });
     }
   }
-}
+};
 </script>
 
 <style>
-    .feedback-container__new-comment {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      margin: 0 auto;
-      border-radius: 10px;
-      width: 360px;
-      height: 200px;
-    }
+.feedback-container__new-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+  border-radius: 10px;
+  width: 360px;
+  height: 200px;
+}
 
-    .feedback-container {
-      box-sizing: border-box;
-        width: 400px;
-        min-height: 500px;
-        padding: 20px 0;
-        border: 4px solid #42b983;
-        border-radius: 10px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-    }
+.feedback-container {
+  box-sizing: border-box;
+  width: 400px;
+  min-height: 500px;
+  padding: 20px 0;
+  border: 4px solid #42b983;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-    .feedback-container__text {
-        border: 2px solid #42b983;
-        border-radius: 10px;
-        width: 280px;
-        height: 100px;
-    }
+.feedback-container__text {
+  border: 2px solid #42b983;
+  border-radius: 10px;
+  width: 280px;
+  height: 100px;
+}
 
-    .feedback-comments {
-      padding: 0;
-    }
+.feedback-comments {
+  padding: 0;
+}
 </style>

@@ -1,29 +1,33 @@
 <template>
   <div class="feedback">
-    {{ feedbackText }}
-    <button v-on:click="removeComment">&times;</button>
+    <p class="feedback__text">{{ feedbackText }}</p>
+    <button class="feedback__remove" v-on:click="removeComment">&times;</button>
 
-    <div>
-      <p>{{user.userLogin}}</p>
-      <p>{{user.userName}}</p>
-      <p>{{user.userSurname}}</p>
+    <div class="feedback__info">
+      <span class="feedback__info--login">{{user.userLogin}}</span>
+      <br />
+      <span>{{user.userName}}</span>
+      <span>{{user.userSurname}}</span>
+      <br />
+      <span>{{date}}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    props: ['id', 'userId', 'feedbackText'],
-    methods: {
-      removeComment() {
-        this.$store.dispatch('removeComment', this.id)
-    }},
-    computed: {
-      user() {
-        return this.$store.getters.getUserById(this.userId)
-      }
+  props: ["id", "userId", "feedbackText", "date"],
+  methods: {
+    removeComment() {
+      this.$store.dispatch("removeComment", this.id);
     }
-}
+  },
+  computed: {
+    user() {
+      return this.$store.getters.getUserById(this.userId);
+    }
+  }
+};
 </script>
 
 <style>
@@ -37,8 +41,26 @@ export default {
   margin: 10px auto;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  position: relative;
+}
+
+.feedback__remove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.feedback__info {
+  font-size: 10px;
+  text-align: left;
+}
+
+.feedback__info--login {
+  font-size: 12px;
+  color: #1b5f40;
 }
 </style>

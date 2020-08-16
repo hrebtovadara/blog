@@ -14,6 +14,7 @@
           v-bind:userId="blogItem.userId"
           v-bind:name="blogItem.name"
           v-bind:text="blogItem.text"
+          v-bind:date="new Date()"
         />
       </ul>
     </div>
@@ -21,39 +22,37 @@
 </template>
 
 <script>
-import blogItem from "../components/BlogItem.vue"
+import blogItem from "../components/BlogItem.vue";
 
 export default {
-  data: function () {
-    return {
-    }
+  data: function() {
+    return {};
   },
   components: {
     blogItem: blogItem
   },
   computed: {
     blogItemsList() {
-      return this.$store.state.blogItemsList
-    },
-  
+      return this.$store.state.blogItemsList;
+    }
   }
-}
+};
 </script>
 
 <style>
-  .blog__banner {
-    background-color: #42b983;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.blog__banner {
+  background-color: #42b983;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .blog__banner-title {
-    color: #ffffff;
-  }
+.blog__banner-title {
+  color: #ffffff;
+}
 
-  .blog__list {
-    padding: 0;
-  }
+.blog__list {
+  padding: 0;
+}
 </style>
