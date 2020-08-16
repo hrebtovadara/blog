@@ -19,7 +19,8 @@
         <feed-back
           v-for="feedbackItem in feedbackList"
           v-bind:key="feedbackItem.id"
-          v-bind:feedbackText="feedbackItem.text"
+          v-bind:id="feedbackItem.id"
+          v-bind:feedbackText="feedbackItem.feedbackText"
         />
       </ul>
      </div>
@@ -54,10 +55,11 @@ export default {
   },
   methods: {
     addNewComment(newCommentText) {
-        this.feedbackList.push({
-            id: this.counterComment,
-            feedbackText: this.newCommentText
-        })
+        this.$store.dispatch('addNewComment', {
+          feedbackText:this.newCommentText,
+          thoughtId: this.selectedId
+        }
+      )
     }
   }
 }

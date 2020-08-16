@@ -50,9 +50,16 @@ export default new Vuex.Store({
         id: 1,
         userLogin: "Красотка",
         thoughtId: 1,
-        text: '123123',
+        feedbackText: "1211111113123",
+      },
+      {
+        id: 2,
+        userLogin: "Красотка",
+        thoughtId: 1,
+        feedbackText: "123dfdf123",
       },
     ],
+    commentsCounter: 3,
   },
   mutations: {
     addNewBlogPost(state, payload):any {
@@ -61,19 +68,45 @@ export default new Vuex.Store({
           name: payload.name,
           text: payload.text,
       })
+    },
+    removeComment(state, id) {
+        state.comments = state.comments.filter(com => com.id != id);
+    },
+    addNewComment(state, payload) {
+      state.comments.unshift({
+        id: state.commentsCounter++,
+        userLogin: "Красотка",
+        thoughtId: payload.thoughtId,
+        feedbackText: payload.feedbackText
+      })
     }
   },
   getters: {
-    getCurrentThought: state => (id:number) => {
-      return state.blogItemsList.find(el => el.id === id)
+    getCurrentThought: function(state) {
+        return function (id:number) {
+          return state.blogItemsList.find(el => el.id === id)
+        }
     },
-    getComments: state => (id: number) => {
-      return state.comments.find(el => el.thoughtId === id)
-    }
-  },
+    
+    getComments:  function(state) {
+      return function (id:number) {
+        return state.comments.filter(el => el.thoughtId === id)
+      }
+    },
+
+    
+},
   actions: {
     asyncChange(context, payload) {
       context.commit('addNewBlogPost', payload)
+    },
+
+    removeComment(context, payload) {
+      context.commit('removeComment', payload)
+    },
+
+    addNewComment(context, payload) {
+      context.commit('addNewComment', payload)
     }
   }
 });
