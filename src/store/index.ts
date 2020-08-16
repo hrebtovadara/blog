@@ -107,6 +107,7 @@ export default new Vuex.Store({
       }
     },
     getUserById: function(state) {
+     
       return function (id:number) {
         return state.users.find(el => el.id === id) 
       }

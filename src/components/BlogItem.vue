@@ -57,10 +57,8 @@ export default {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         color: #2c3e50;
         font-size: 30px;
-       
     }
-
-
+    
     .blog-item__text {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         color: #2c3e50;

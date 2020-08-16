@@ -6,6 +6,9 @@
           v-bind:key="blogItem.id"
           v-bind:name="blogItem.name"
           v-bind:text="blogItem.text"
+          v-bind:id="blogItem.id"
+          v-bind:userId="blogItem.userId"
+          
     ></div>
 
      <div class="feedback-container">
