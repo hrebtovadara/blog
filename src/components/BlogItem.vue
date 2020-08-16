@@ -1,7 +1,12 @@
 <template>
     <div class="blog-item">
         <router-link class="blog-item__name" :to= "path">{{name}}</router-link>
-        <p class="blog-item__text">{{text}}</p>
+        <p class="blog-item__text">{{text}}</p> 
+         <div>
+            <p>{{user.userLogin}}</p>
+            <p>{{user.userName}}</p>
+            <p>{{user.userSurname}}</p>
+        </div>
     </div>
 </template>
 
@@ -13,13 +18,17 @@ export default {
     },
     props: [
         "id",
+        "userId",
         "name",
         "text"
     ],
      computed: {
-         path() {
+        path() {
              return "/" + this.id;
-         }
+         },
+        user() {
+             return this.$store.getters.getUserById(this.userId)
+        }
      }
 }
 </script>

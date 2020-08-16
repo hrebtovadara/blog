@@ -11,6 +11,7 @@
           v-for="blogItem in blogItemsList"
           v-bind:key="blogItem.id"
           v-bind:id="blogItem.id"
+          v-bind:userId="blogItem.userId"
           v-bind:name="blogItem.name"
           v-bind:text="blogItem.text"
         />

@@ -20,6 +20,7 @@
           v-for="feedbackItem in feedbackList"
           v-bind:key="feedbackItem.id"
           v-bind:id="feedbackItem.id"
+          v-bind:userId="feedbackItem.userId"
           v-bind:feedbackText="feedbackItem.feedbackText"
         />
       </ul>
@@ -55,9 +56,11 @@ export default {
   },
   methods: {
     addNewComment(newCommentText) {
+        const user = this.$store.getters.getRandomUser();
         this.$store.dispatch('addNewComment', {
           feedbackText:this.newCommentText,
-          thoughtId: this.selectedId
+          thoughtId: this.selectedId,
+          userId: user.id
         }
       )
     }

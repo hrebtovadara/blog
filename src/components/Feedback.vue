@@ -2,16 +2,27 @@
   <div class="feedback">
     {{ feedbackText }}
     <button v-on:click="removeComment">&times;</button>
+
+    <div>
+      <p>{{user.userLogin}}</p>
+      <p>{{user.userName}}</p>
+      <p>{{user.userSurname}}</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-    props: ['id', 'feedbackText'],
+    props: ['id', 'userId', 'feedbackText'],
     methods: {
       removeComment() {
         this.$store.dispatch('removeComment', this.id)
-    }}
+    }},
+    computed: {
+      user() {
+        return this.$store.getters.getUserById(this.userId)
+      }
+    }
 }
 </script>
 

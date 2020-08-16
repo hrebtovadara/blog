@@ -22,9 +22,12 @@ export default {
     },
     methods: {
         AddNewrecording() {
+            const user = this.$store.getters.getRandomUser();
+
             this.$store.dispatch('asyncChange', {
                 name:this.nameRecording, 
-                text:this.textRecording
+                text:this.textRecording,
+                userId: user.id
             })
 
             this.$router.push("/")
