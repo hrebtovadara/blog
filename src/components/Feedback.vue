@@ -17,7 +17,6 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-
 @Component 
 
 export default class Feedback extends Vue {
@@ -61,6 +60,12 @@ export default class Feedback extends Vue {
   position: absolute;
   top: 5px;
   right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #42b983;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
 }
 
 .feedback__info {
