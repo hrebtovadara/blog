@@ -86,6 +86,9 @@ export default new Vuex.Store({
         date: new Date()
       })
     },
+    removeBlogItem(state, id) {
+      state.blogItemsList = state.blogItemsList.filter(com => com.id != id);
+    },
     removeComment(state, id) {
       state.comments = state.comments.filter(com => com.id != id);
     },
@@ -127,13 +130,18 @@ export default new Vuex.Store({
       context.commit('addNewBlogPost', payload)
     },
 
+    removeBlogItem(context, payload) {
+      context.commit('removeBlogItem', payload)
+    },
+
     removeComment(context, payload) {
       context.commit('removeComment', payload)
     },
 
     addNewComment(context, payload) {
       context.commit('addNewComment', payload)
-    }
+    },
+    
   },
   plugins: [createPersistedState()],
 });

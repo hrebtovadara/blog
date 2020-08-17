@@ -10,6 +10,7 @@
       </div>
       <p class="blog-item__date">{{date}}</p>
     </div>
+    <button class="blog-item__remove" v-on:click="removeBlogItem">del</button>
   </div>
 </template>
 
@@ -32,6 +33,10 @@ export default class BlogItem extends Vue {
     get user():any {
       return this.$store.getters.getUserById(this.userId);
     }
+
+    public removeBlogItem():void {
+      this.$store.dispatch("removeBlogItem", this.id);
+    }
 }
 
 </script>
@@ -49,6 +54,7 @@ export default class BlogItem extends Vue {
   flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .blog-item:hover {
@@ -91,4 +97,17 @@ export default class BlogItem extends Vue {
   font-size: 10px;
   text-align: left;
 }
+
+.blog-item__remove {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 20px;
+  background-color: #42b983;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
 </style>
