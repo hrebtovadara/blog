@@ -22,16 +22,16 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: function() {
-    return {
-      nameRecording: "",
-      textRecording: ""
-    };
-  },
-  methods: {
-    AddNewrecording() {
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+@Component 
+
+export default class Create extends Vue {
+  private nameRecording = ""
+  private textRecording = ""
+
+  public AddNewrecording():void {
       if (this.textRecording) {
         const user = this.$store.getters.getRandomUser();
 
@@ -44,8 +44,9 @@ export default {
         this.$router.push("/");
       }
     }
-  }
-};
+
+}
+
 </script>
 
 <style>

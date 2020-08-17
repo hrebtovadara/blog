@@ -61,14 +61,14 @@ export default new Vuex.Store({
         id: 1,
         userId: 1,
         thoughtId: 1,
-        feedbackText: "1211111113123",
+        feedbackText: "YouTube: https://youtu.be/wSSE0thGmcc",
         date: new Date()
       },
       {
         id: 2,
         userId: 2,
         thoughtId: 1,
-        feedbackText: "123dfdf123",
+        feedbackText: "YouTube: https://youtu.be/QajyNRnyPMs",
         date: new Date()
       },
     ],

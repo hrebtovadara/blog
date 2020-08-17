@@ -21,22 +21,23 @@
   </div>
 </template>
 
-<script>
-import blogItem from "../components/BlogItem.vue";
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import blogItem from "@/components/BlogItem.vue"
 
-export default {
-  data: function() {
-    return {};
-  },
+@Component ({
   components: {
-    blogItem: blogItem
-  },
-  computed: {
-    blogItemsList() {
+    blogItem
+  }
+})
+
+export default class Home extends Vue {
+  get blogItemsList(): Array<object> {
       return this.$store.state.blogItemsList;
     }
-  }
-};
+}
+
+
 </script>
 
 <style>

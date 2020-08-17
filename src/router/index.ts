@@ -20,7 +20,7 @@ const routes: Array<RouteConfig> = [
     path: "/:id",
     name: "Thought",
     component: () =>
-      import( "../views/Thought.vue")
+      import("../views/Thought.vue")
   },
 ];
 

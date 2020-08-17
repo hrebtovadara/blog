@@ -13,21 +13,27 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {};
-  },
-  props: ["id", "userId", "name", "text", "date"],
-  computed: {
-    path() {
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+@Component 
+
+export default class BlogItem extends Vue {
+    @Prop() readonly id!: number
+    @Prop() readonly userId!: number
+    @Prop() readonly name!: string
+    @Prop() readonly text!: string
+    @Prop() readonly date!: string
+
+    get path():string {
       return "/" + this.id;
-    },
-    user() {
+    }
+
+    get user():any {
       return this.$store.getters.getUserById(this.userId);
     }
-  }
-};
+}
+
 </script>
 
 <style>

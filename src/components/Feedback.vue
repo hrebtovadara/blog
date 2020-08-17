@@ -14,20 +14,29 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ["id", "userId", "feedbackText", "date"],
-  methods: {
-    removeComment() {
-      this.$store.dispatch("removeComment", this.id);
-    }
-  },
-  computed: {
-    user() {
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+
+@Component 
+
+export default class Feedback extends Vue {
+  @Prop() readonly id!: number
+  @Prop() readonly userId!: number
+  @Prop() readonly feedbackText!: string
+  @Prop() readonly date!: string
+
+  get user():any {
       return this.$store.getters.getUserById(this.userId);
     }
-  }
-};
+
+  public removeComment():void {
+      this.$store.dispatch("removeComment", this.id);
+    }
+
+}
+
+
 </script>
 
 <style>

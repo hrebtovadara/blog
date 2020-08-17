@@ -32,34 +32,33 @@
   </div>
 </template>
 
-<script>
-import blogItem from "../components/BlogItem.vue";
-import feedBack from "../components/Feedback.vue";
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import blogItem from "@/components/BlogItem.vue";
+import feedBack from "@/components/Feedback.vue";
 
-export default {
-  data: function() {
-    return {
-      counterComment: 2,
-      newCommentText: ""
-    };
-  },
+@Component ({
   components: {
     blogItem,
     feedBack
-  },
-  computed: {
-    blogItem() {
+  }
+})
+
+export default class Thought extends Vue {
+  private counterComment = 2
+  private newCommentText = ""
+
+  get blogItem(): object {
       return this.$store.getters.getCurrentThought(this.selectedId);
-    },
-    feedbackList() {
+    }
+  get feedbackList(): Array<object> {
       return this.$store.getters.getComments(this.selectedId);
-    },
-    selectedId() {
+    }
+  get selectedId(): number {
       return parseInt(this.$route.params.id);
     }
-  },
-  methods: {
-    addNewComment(newCommentText) {
+
+  public addNewComment(newCommentText: string): any {
       const user = this.$store.getters.getRandomUser();
       this.$store.dispatch("addNewComment", {
         feedbackText: this.newCommentText,
@@ -67,8 +66,9 @@ export default {
         userId: user.id
       });
     }
-  }
-};
+}
+
+
 </script>
 
 <style>
